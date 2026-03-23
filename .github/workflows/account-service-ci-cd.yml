@@ -6,8 +6,9 @@ on:
       - main
     paths:
       - 'account-service/**'
-  jobs:
-    build-and-deploy:
+
+jobs:
+  build-and-deploy:
     runs-on: self-hosted
 
     steps:
@@ -43,4 +44,4 @@ on:
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/account-service/
-          kubectl set image deployment/account-service account-service=${{ secrets.DOCKER_USERNAME }}/account-service:${{ github.run_number }} 
+          kubectl set image deployment/account-service account-service=${{ secrets.DOCKER_USERNAME }}/account-service:${{ github.run_number }}
